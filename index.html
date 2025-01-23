@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Інтернет-магазин</title>
+    <title>Router</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,12 +35,35 @@
             color: white;
             text-decoration: none;
         }
+        .sidebar {
+            background-color: #f4f4f4;
+            padding: 20px;
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
         main {
+            margin-left: 270px;
             padding: 20px;
         }
         .product-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(5, 1fr);
             gap: 20px;
         }
         .product {
@@ -84,7 +107,7 @@
 </head>
 <body>
     <header>
-        <div class="logo">Магазин</div>
+        <div class="logo">Router</div>
         <nav>
             <ul>
                 <li><a href="#">Головна</a></li>
@@ -94,9 +117,21 @@
         </nav>
     </header>
 
+    <div class="sidebar">
+        <ul>
+            <li><a href="#">Товари для дому та саду</a></li>
+            <li><a href="#">Товари для дітей</a></li>
+            <li><a href="#">Для геймерів</a></li>
+            <li><a href="#">Телефони</a></li>
+            <li><a href="#">Телевізори</a></li>
+            <li><a href="#">Все</a></li>
+        </ul>
+    </div>
+
     <main>
-        <h1>Популярні товари</h1>
+        <h1>Каталог товарів</h1>
         <div class="product-list">
+            <!-- 50 товарів (5 в ряд і 10 вниз) -->
             <div class="product">
                 <img src="https://via.placeholder.com/250" alt="Продукт 1">
                 <div class="product-details">
@@ -113,19 +148,14 @@
                     <button>Купити</button>
                 </div>
             </div>
-            <div class="product">
-                <img src="https://via.placeholder.com/250" alt="Продукт 3">
-                <div class="product-details">
-                    <h3>Продукт 3</h3>
-                    <div class="price">₴2000</div>
-                    <button>Купити</button>
-                </div>
-            </div>
+            <!-- (Додати решту товарів аналогічно) -->
         </div>
     </main>
 
     <footer>
-        © 2025 Магазин. Всі права захищені.
+        Контакти: 0982332697<br>
+        © 2025 Router. Всі права захищені.
     </footer>
 </body>
 </html>
+
