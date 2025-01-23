@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Router</title>
+    <title>Веб Магазин Router</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -107,7 +107,7 @@
 </head>
 <body>
     <header>
-        <div class="logo">Router</div>
+        <div class="logo">Веб Магазин Router</div>
         <nav>
             <ul>
                 <li><a href="#">Головна</a></li>
@@ -119,43 +119,69 @@
 
     <div class="sidebar">
         <ul>
-            <li><a href="#">Товари для дому та саду</a></li>
-            <li><a href="#">Товари для дітей</a></li>
-            <li><a href="#">Для геймерів</a></li>
-            <li><a href="#">Телефони</a></li>
-            <li><a href="#">Телевізори</a></li>
-            <li><a href="#">Все</a></li>
+            <li><a href="#" onclick="loadCategory('home-and-garden')">Товари для дому та саду</a></li>
+            <li><a href="#" onclick="loadCategory('kids')">Товари для дітей</a></li>
+            <li><a href="#" onclick="loadCategory('gaming')">Для геймерів</a></li>
+            <li><a href="#" onclick="loadCategory('phones')">Телефони</a></li>
+            <li><a href="#" onclick="loadCategory('tvs')">Телевізори</a></li>
+            <li><a href="#" onclick="loadCategory('all')">Все</a></li>
         </ul>
     </div>
 
     <main>
-        <h1>Каталог товарів</h1>
-        <div class="product-list">
-            <!-- 50 товарів (5 в ряд і 10 вниз) -->
-            <div class="product">
-                <img src="https://via.placeholder.com/250" alt="Продукт 1">
-                <div class="product-details">
-                    <h3>Продукт 1</h3>
-                    <div class="price">₴1000</div>
-                    <button>Купити</button>
-                </div>
-            </div>
-            <div class="product">
-                <img src="https://via.placeholder.com/250" alt="Продукт 2">
-                <div class="product-details">
-                    <h3>Продукт 2</h3>
-                    <div class="price">₴1500</div>
-                    <button>Купити</button>
-                </div>
-            </div>
-            <!-- (Додати решту товарів аналогічно) -->
+        <h1 id="category-title">Каталог товарів</h1>
+        <div class="product-list" id="product-list">
+            <!-- Динамічний список товарів -->
         </div>
     </main>
 
     <footer>
         Контакти: 0982332697<br>
-        © 2025 Router. Всі права захищені.
+        © 2025 Веб Магазин Router. Всі права захищені.
     </footer>
+
+    <script>
+        const categories = {
+            "home-and-garden": "Товари для дому та саду",
+            "kids": "Товари для дітей",
+            "gaming": "Для геймерів",
+            "phones": "Телефони",
+            "tvs": "Телевізори",
+            "all": "Всі товари"
+        };
+
+        function loadCategory(category) {
+            const titleElement = document.getElementById('category-title');
+            const productList = document.getElementById('product-list');
+
+            // Змінюємо заголовок
+            titleElement.textContent = categories[category];
+
+            // Очищаємо список товарів
+            productList.innerHTML = '';
+
+            // Генеруємо товари для вибраної категорії
+            let productCount = category === 'all' ? 5000 : 50;
+            for (let i = 1; i <= productCount; i++) {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
+                productDiv.innerHTML = `
+                    <img src="https://via.placeholder.com/250" alt="${categories[category]} Продукт ${i}">
+                    <div class="product-details">
+                        <h3>${categories[category]} Продукт ${i}</h3>
+                        <div class="price">₴${(1000 + i * 10).toFixed(2)}</div>
+                        <button>Купити</button>
+                    </div>
+                `;
+                productList.appendChild(productDiv);
+
+                // Показуємо лише 50 товарів на сторінці
+                if (i === 50) break;
+            }
+        }
+
+        // Завантажуємо категорію "Всі товари" за замовчуванням
+        loadCategory('all');
+    </script>
 </body>
 </html>
-
